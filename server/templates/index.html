@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Start a Query - BDA</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+        <!-- Cover CSS -->
+        <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/cover/cover.css">
+
+        <style type="text/css">
+            html,
+            body {
+               
+            }
+            .beta {
+                color: lightslategray;
+            }
+
+            input {
+                background-color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+
+                <header class="masthead mb-auto">
+                    <div class="inner">
+                        <h3 class="masthead-brand">Biophysical Data Aggregator</h3>
+                        <nav class="nav nav-masthead justify-content-center">
+                            <a class="nav-link" href="/">Query</a>
+                            <a class="nav-link" href="/about">About</a>
+                        </nav>
+                    </div>
+                </header>
+
+                <main role="main" class="inner cover">
+                    <h1>Start a biophysical data query.</h1>
+                    <p class="lead">Enter query.</p>
+                    <form class="form-signin" action="/startQuery" method="post">
+                        <input type="query" name="inputQuery" id="inputQuery" class="form-control" placeholder="Query" required autofocus>  
+                        <br>
+                        <button id="btnSubmit" class="btn btn-lg btn-primary btn-block" type="go.">Go!</button>
+                    </form>
+                </main>  
+
+                <footer class="mastfoot mt-auto">
+                    <div class="inner">
+                        <p>By Tianna Grant, Adamo Mancino, and Hersh Bhargava @ UCSF iPQB. Copyright 2019.
+                        </p>
+                    </div>
+                </footer>
+            </div>
+
+
+        </div>
+
+        <!-- jquery and Bootstrap Core JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+        <!-- SocketIO JS -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#btnSignUp').click(function() {
+
+                    $.ajax({
+                        url: '/query',
+                        data: $('form').serialize(),
+                        type: 'POST',
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
